@@ -265,18 +265,45 @@ def user_stats(df, city):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
+# Function to display records in chunks of 5
+def display_records(df):
+    start = 0
+    chunk_size = 5
+    while start < len(df):
+        print(df[start:start + chunk_size])
+        start += chunk_size
+        user_input = input("Do you want to see the next 5 records? (yes/no): ")
+        if user_input.lower() != 'yes':
+            break
 
 def main():
     while True:
+        
+        # Setup Filters
         city, month, day = get_filters()
+        
+        # Load File
         df = load_data(city, month, day)
 
+        # Provide Time Stats
         time_stats(df)
+        
+        # Provide Stations Stats
         station_stats(df)
+        
+        # Provide travels duration stats
         trip_duration_stats(df)
+        
+        # Provide User Stats
         user_stats(df, city)
+        
+        # Offer if raw data should be viewed
+        check_raw_data = input('\nWould you like to view raw data? Enter yes or no.\n')
+        if check_raw_data.lower() == 'yes':
+            display_records(df)
 
-        restart = input('\nWould you like to restart? Enter yes or no.\n')
+        # asks if finishes or start it over
+        restart = input('\nWould you like to start it over? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
 
