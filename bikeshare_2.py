@@ -5,6 +5,9 @@
   Author: Ivo Veiga
   Date: January 2025
 
+  Review required: missed rubric requeriments - make user input
+                   case insensitive
+                
 
 """
 
@@ -23,7 +26,7 @@ def check_city(input_city):
 
     """
     while True:
-        input_read=input(input_city)
+        input_read=input(input_city).lower()
         try:
             if input_read in ['chicago','new york city','washington']:
                 break
@@ -40,7 +43,7 @@ def check_month(input_month):
 
     """
     while True:
-        input_read=input(input_month)
+        input_read=input(input_month).lower()
         try:
             if input_read in ['all', 'january','february','march', 
                               'april', 'may', 'june']:
@@ -58,7 +61,7 @@ def check_wkday(input_wkday):
 
     """
     while True:
-        input_read=input(input_wkday)
+        input_read=input(input_wkday).lower()
         try:
             if input_read in ['all', 'monday','tuesday', 'wednesday', 
                               'thursday', 'friday', 'saturday', 'sunday']:
